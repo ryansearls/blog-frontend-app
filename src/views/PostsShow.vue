@@ -3,7 +3,8 @@
     <div class="container">
       <h2>{{ post.title }}</h2>
       <h2>{{ post.body }}</h2>
-      <h2>{{ post.image }}</h2>
+      <img v-bind:src="post.image" alt="post.title" />
+      <router-link v-bind:to="`/posts/${rpost.id}/edit`"><button>Edit postsindex</button></router-link>
       <router-link to="/posts">Back to Posts</router-link>
     </div>
   </div>
@@ -20,7 +21,7 @@ export default {
     };
   },
   created: function () {
-    axios.get("/posts/1").then((response) => {
+    axios.get("/posts/" + this.$route.params.id).then((response) => {
       this.post = response.data;
     });
   },
