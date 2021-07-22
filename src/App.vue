@@ -14,6 +14,8 @@
       <router-link to="/posts">Posts</router-link>
       |
       <router-link to="/posts/new">New</router-link>
+      |
+      <router-link to="/posts/1">Show</router-link>
     </div>
     <router-view />
   </div>

@@ -11,15 +11,11 @@
       </div>
       <div>
         <label>Body:</label>
-        <input type="text" v-model="newPostParams.chef" />
-      </div>
-      <div>
-        <label>Directions:</label>
-        <input type="text" v-model="newPostParams.directions" />
+        <input type="text" v-model="newPostParams.body" />
       </div>
       <div>
         <label>Image:</label>
-        <input type="text" v-model="newPostParams.image_url" />
+        <input type="text" v-model="newPostParams.image" />
       </div>
       <input type="submit" value="Submit" />
     </form>
@@ -37,8 +33,8 @@ export default {
   },
   methods: {
     createPost: function () {
-      axios.post("/posts/new", this.newPostParams).then((response) => {
-        this.$router.push("/recipes");
+      axios.post("/posts", this.newPostParams).then((response) => {
+        this.$router.push("/posts");
         console.log(response.data);
       });
     },
