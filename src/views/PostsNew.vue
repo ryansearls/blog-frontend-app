@@ -1,5 +1,6 @@
 <template>
   <div class="posts-new">
+    <img v-if="status" :src="`https://http.cat/${status}`" />
     <form v-on:submit.prevent="createPost()">
       <h1>New Post</h1>
       <ul>
@@ -12,6 +13,10 @@
       <div>
         <label>Body:</label>
         <input type="text" v-model="newPostParams.body" />
+        <small>
+          v-if="newPostParams.body.length > 150" class="text-danger"> There are
+          {{ 150 - newPostParams.body.length }} characters remaining.
+        </small>
       </div>
       <div>
         <label>Image:</label>
@@ -29,14 +34,20 @@ export default {
     return {
       errors: [],
       newPostParams: {},
+      status: "",
     };
   },
   methods: {
     createPost: function () {
-      axios.post("/posts", this.newPostParams).then((response) => {
-        this.$router.push("/posts");
-        console.log(response.data);
-      });
+      axios
+        .post("/posts", this.newPostParams)
+        .then((response) => {
+          this.$router.push("/posts");
+          console.log(response.data);
+        })
+        .catch((error) => {
+          this.errors = error.response.status;
+        });
     },
   },
 };

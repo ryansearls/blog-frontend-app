@@ -16,6 +16,9 @@
       <div>
         <label>Password:</label>
         <input type="password" v-model="newUserParams.password" />
+        <small v-if="newUserParams.password.length > 0 && newUserParams.password.length < 6" class="text-danger">
+          Password must be 6 characters
+        </small>
       </div>
       <div>
         <label>Password confirmation:</label>
