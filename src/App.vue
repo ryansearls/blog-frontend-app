@@ -35,11 +35,12 @@
               aria-haspopup="true"
               aria-expanded="false"
             >
-              Dropdown
+              Users
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href="/signup">Signup</a>
               <a class="dropdown-item" href="/login">Login</a>
+              <a class="dropdown-item" href="/logout">Logout</a>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="#">Something else here</a>
             </div>
@@ -55,21 +56,33 @@
       </div>
     </nav>
     <div id="nav">
-      <router-link to="/">Home</router-link>
+      <li>
+        <router-link to="/">Home</router-link>
+      </li>
       |
-      <router-link to="/about">About</router-link>
+      <li>
+        <router-link to="/about">About</router-link>
+      </li>
       |
-      <router-link to="/signup">Signup</router-link>
+      <li v-if="!isLoggedIn()">
+        <router-link to="/signup">Signup</router-link>
+      </li>
       |
-      <router-link to="/login">Login</router-link>
+      <li v-if="!isLoggedIn()">
+        <router-link to="/login">Login</router-link>
+      </li>
       |
-      <router-link to="/logout">Logout</router-link>
+      <li v-if="isLoggedIn()">
+        <router-link to="/logout">Logout</router-link>
+      </li>
       |
-      <router-link to="/posts">Posts</router-link>
+      <li>
+        <router-link to="/posts">Posts</router-link>
+      </li>
       |
-      <router-link to="/posts/new">New</router-link>
-      |
-      <router-link to="/posts/1">Show</router-link>
+      <li>
+        <router-link to="/posts/new">New</router-link>
+      </li>
     </div>
     <router-view />
   </div>
@@ -82,3 +95,22 @@ body {
   background-image: url("./assets/repeated-square/repeated-square.png");
 }
 </style>
+
+<script>
+// import axios from "axios";
+
+export default {
+  methods: {
+    isLoggedIn: function () {
+      if (localStorage.getItem("jwt")) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+    getUserId: function () {
+      return localStorage.getItem("user_id");
+    },
+  },
+};
+</script>
