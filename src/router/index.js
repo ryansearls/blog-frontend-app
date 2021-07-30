@@ -34,32 +34,32 @@ const routes = [
   { 
     path: "/login",
     name: "login", 
-    component: Login
+    component: Login,
   },
   { 
     path: "/logout",
     name: "logout", 
-    component: Logout
+    component: Logout,
   },
   { 
     path: "/posts", 
     name: "PostsIndex", 
-    component: PostsIndex
+    component: PostsIndex,
   },
   { 
     path: "/posts/new", 
     name: "PostsNew", 
-    component: PostsNew
+    component: PostsNew,
   },
   { 
-    path: "/posts/", 
+    path: "/posts/:id", 
     name: "PostsShow", 
-    component: PostsShow
+    component: PostsShow,
   },
   { 
     path: "/posts/:id/edit", 
     name: "PostsEdit", 
-    component: PostsEdit
+    component: PostsEdit,
   },
 ];
 

@@ -13,10 +13,6 @@
       <div>
         <label>Body:</label>
         <input type="text" v-model="newPostParams.body" />
-        <small>
-          v-if="newPostParams.body.length > 150" class="text-danger"> There are
-          {{ 150 - newPostParams.body.length }} characters remaining.
-        </small>
       </div>
       <div>
         <label>Image:</label>
@@ -29,9 +25,12 @@
 
 <script>
 import axios from "axios";
+
 export default {
   data: function () {
     return {
+      message: "Here are the posts",
+      posts: [],
       errors: [],
       newPostParams: {},
       status: "",
