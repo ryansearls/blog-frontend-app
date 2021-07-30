@@ -17,15 +17,9 @@
         <label>Image:</label>
         <input type="text" v-model="currentPostParams.image" />
       </div>
+      <router-link to="/posts">Back to Posts.</router-link>
       <input type="submit" value="Submit" />
-      <button v-on:click="destroyPost()">Delete</button>
     </form>
-    <div class="container">
-      <h2>{{ post.title }}</h2>
-      <h2>{{ post.body }}</h2>
-      <img v-bind:src="post.image" alt="post.title" />
-      <router-link to="/posts">Back to Posts</router-link>
-    </div>
   </div>
 </template>
 
@@ -35,28 +29,21 @@ export default {
   data: function () {
     return {
       post: {},
-      errors: [],
+      errors: {},
     };
   },
   created: function () {
     axios.get("/posts/" + this.$route.params.id).then((response) => {
-      console.log("posts show", response);
-      this.post = response.data;
+      console.log("Post Info", response.data);
+      this.currentPostParams = response.data;
     });
   },
   methods: {
-    updatePost: function (post) {
-      var editPostParams = post;
-      axios
-        .patch("/posts/" + post.id, editPostParams)
-        .then((response) => {
-          console.log("post update", response);
-          this.$router.push("/posts");
-        })
-        .catch((error) => {
-          console.log("posts update error", error.response);
-          this.errors = error.response.data.errors;
-        });
+    updatePost: function () {
+      axios.patch(`/posts/${this.$route.params.id}`, this.currentPostParams).then((response) => {
+        console.log(response.data);
+        this.$router.push(`/posts/${response.data.id}`);
+      });
     },
   },
 };
