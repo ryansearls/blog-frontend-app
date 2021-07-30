@@ -6,16 +6,16 @@
         class="navbar-toggler"
         type="button"
         data-toggle="collapse"
-        data-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent"
+        data-target="#navbarNaVDropdown"
+        aria-controls="navbarNavDropdown"
         aria-expanded="false"
         aria-label="Toggle navigation"
       >
         <span class="navbar-toggler-icon"></span>
       </button>
 
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
           <li class="nav-item active">
             <a class="nav-link" href="/posts">Posts</a>
           </li>
@@ -29,7 +29,7 @@
             <a
               class="nav-link dropdown-toggle"
               href="#"
-              id="navbarDropdown"
+              id="navbarDropdownMenuLink"
               role="button"
               data-toggle="dropdown"
               aria-haspopup="true"
@@ -37,7 +37,7 @@
             >
               Users
             </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
               <li v-if="!isLoggedIn()">
                 <a class="dropdown-item" href="/signup">Signup</a>
               </li>
